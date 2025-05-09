@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hospital - Gestión de Citas</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container mt-5">
+		<h1 class="text-center">Bienvenido al Sistema de Gestión de Citas Médicas</h1>
+		
+
+		<div class="container my-4">
+		        <h1>Lista de Citas</h1>
+		        <a th:href="@{/citas/nueva}" class="btn btn-primary mb-3">Agregar Nueva Cita</a>
+		        <table class="table table-bordered">
+		            <thead>
+		                <tr>
+		                    <th>ID</th>
+		                    <th>Fecha</th>
+		                    <th>Hora</th>
+		                    <th>Doctor</th>
+		                    <th>Paciente</th>
+		                    <th>Acciones</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		                <tr th:each="cita : ${citas}">
+		                    <td th:text="${cita.id}"></td>
+		                    <td th:text="${cita.fecha}"></td>
+		                    <td th:text="${cita.hora}"></td>
+		                    <td th:text="${cita.doctor.nombre}"></td>
+		                    <td th:text="${cita.paciente.nombre}"></td>
+		                    <td>
+		                        <a th:href="@{/citas/editar/{id}(id=${cita.id})}" class="btn btn-warning btn-sm">Editar</a>
+		                        <a th:href="@{/citas/eliminar/{id}(id=${cita.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+		                    </td>
+		                </tr>
+		            </tbody>
+		        </table>
+		    </div>
+	</div>
+</body>
+
+</html>

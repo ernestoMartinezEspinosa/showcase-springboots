@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Cita</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Editar Cita</h1>
+        <form action="/citas/actualizar" method="post" class="mt-4">
+            <input type="hidden" name="id" value="1">
+
+            <div class="mb-3">
+                <label for="doctor" class="form-label">Doctor</label>
+                <select class="form-control" id="doctor" name="doctor" required>
+                    <option value="1" selected>Dr. Juan Pérez</option>
+                    <option value="2">Dr. Ana López</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="consultorio" class="form-label">Consultorio</label>
+                <select class="form-control" id="consultorio" name="consultorio" required>
+                    <option value="1" selected>Consultorio 101</option>
+                    <option value="2">Consultorio 102</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="hora" class="form-label">Hora de la Cita</label>
+                <input type="datetime-local" class="form-control" id="hora" name="hora" value="2025-05-10T09:00" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="paciente" class="form-label">Nombre del Paciente</label>
+                <input type="text" class="form-control" id="paciente" name="paciente" value="Juan Pérez" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Actualizar Cita</button>
+            <a href="/" class="btn btn-secondary">Volver al Inicio</a>
+        </form>
+    </div>
+</body>
+</html>

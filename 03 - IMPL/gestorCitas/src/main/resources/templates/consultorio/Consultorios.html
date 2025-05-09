@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Consultorios</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container my-4">
+        <h1>Lista de Consultorios</h1>
+        <a th:href="@{/consultorios/nuevo}" class="btn btn-primary mb-3">Agregar Nuevo Consultorio</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Número</th>
+                    <th>Piso</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="consultorio : ${consultorios}">
+                    <td th:text="${consultorio.id}"></td>
+                    <td th:text="${consultorio.numero}"></td>
+                    <td th:text="${consultorio.piso}"></td>
+                    <td>
+                        <a th:href="@{/consultorios/editar/{id}(id=${consultorio.id})}" class="btn btn-warning btn-sm">Editar</a>
+                        <a th:href="@{/consultorios/eliminar/{id}(id=${consultorio.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

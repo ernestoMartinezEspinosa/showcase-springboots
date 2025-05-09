@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${consultorio.id == null} ? 'Nuevo Consultorio' : 'Editar Consultorio'"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container my-4">
+        <h1 th:text="${consultorio.id == null} ? 'Nuevo Consultorio' : 'Editar Consultorio'"></h1>
+        <form th:action="@{${consultorio.id == null} ? '/consultorios/guardar' : '/consultorios/actualizar'}" method="post">
+            <div class="form-group">
+                <label for="id">ID</label>
+                <input type="text" id="id" name="id" class="form-control" th:value="${consultorio.id}" required>
+            </div>
+            <div class="form-group">
+                <label for="numero">Número</label>
+                <input type="number" id="numero" name="numero" class="form-control" th:value="${consultorio.numero}" required>
+            </div>
+            <div class="form-group">
+                <label for="piso">Piso</label>
+                <input type="text" id="piso" name="piso" class="form-control" th:value="${consultorio.piso}" required>
+            </div>
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="/" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nueva Cita</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Agendar Nueva Cita</h1>
+        <form action="/citas/guardar" method="post" class="mt-4">
+            <div class="mb-3">
+                <label for="doctor" class="form-label">Doctor</label>
+                <select class="form-control" id="doctor" name="doctor" required>
+                    <option value="">Seleccionar Doctor</option>
+                    <option value="1">Dr. Juan Pérez</option>
+                    <option value="2">Dr. Ana López</option>
+                    <option value="3">Dr. Carlos Sánchez</option>
+                    <option value="4">Dr. Patricia Gómez</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="consultorio" class="form-label">Consultorio</label>
+                <select class="form-control" id="consultorio" name="consultorio" required>
+                    <option value="">Seleccionar Consultorio</option>
+                    <option value="1">Consultorio 101 - Piso 1</option>
+                    <option value="2">Consultorio 102 - Piso 1</option>
+                    <option value="3">Consultorio 201 - Piso 2</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="hora" class="form-label">Hora de la Cita</label>
+                <input type="datetime-local" class="form-control" id="hora" name="hora" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="paciente" class="form-label">Nombre del Paciente</label>
+                <input type="text" class="form-control" id="paciente" name="paciente" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar Cita</button>
+            <a href="/" class="btn btn-secondary">Volver al Inicio</a>
+        </form>
+    </div>
+</body>
+</html>

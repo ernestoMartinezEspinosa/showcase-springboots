@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Doctores</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container my-4">
+        <h1>Lista de Doctores</h1>
+        <a th:href="@{/doctores/nuevo}" class="btn btn-primary mb-3">Agregar Nuevo Doctor</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Especialidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="doctor : ${doctores}">
+                    <td th:text="${doctor.id}"></td>
+                    <td th:text="${doctor.nombre}"></td>
+                    <td th:text="${doctor.apellidoPaterno}"></td>
+                    <td th:text="${doctor.apellidoMaterno}"></td>
+                    <td th:text="${doctor.especialidad}"></td>
+                    <td>
+                        <a th:href="@{/doctores/editar/{id}(id=${doctor.id})}" class="btn btn-warning btn-sm">Editar</a>
+                        <a th:href="@{/doctores/eliminar/{id}(id=${doctor.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
