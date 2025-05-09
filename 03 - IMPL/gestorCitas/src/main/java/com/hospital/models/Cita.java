@@ -23,5 +23,6 @@ public class Cita {
 
     private String nombrePaciente;
 
-    // Getters y Setters
+    // Getters y Setters por lombok
+    
 }

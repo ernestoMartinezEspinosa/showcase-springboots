@@ -1,6 +1,8 @@
 package com.hospital.repositories;
 
 import com.hospital.models.Cita;
+import com.hospital.models.Doctor;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -34,4 +36,8 @@ public interface CitaRepository extends MongoRepository<Cita, String> {
 
     // Método para eliminar una cita por su ID
     void deleteById(String id);
+    
+	// Método para obtener citas de un doctor en un rango de fechas
+    List<Cita> findByDoctorAndFechaHoraBetween(Doctor doctor, LocalDateTime startDate, LocalDateTime endDate);
+
 }
