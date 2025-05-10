@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hospital - Gestión de Citas</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+
+	<script>
+		// Función para hacer la solicitud DELETE
+		function eliminarCita(button) {
+			const citaId = button.getAttribute("data-id");
+			if (confirm("¿Estás seguro de que deseas eliminar la cita con ID " + citaId + "?")) {
+				fetch(`/api/citas/${citaId}`, {
+					method: 'DELETE',
+					headers: {
+						'Content-Type': 'application/json',
+					}
+				})
+					.then(response => {
+						if (response.ok) {
+							alert("Cita eliminada con éxito.");
+							window.location.reload();  // Recarga la página para reflejar los cambios
+						} else {
+							alert("Error al eliminar la cita. Por favor, intente nuevamente.");
+						}
+					})
+					.catch(error => {
+						console.error("Hubo un error al eliminar la cita:", error);
+						alert("Error al eliminar la cita. Por favor, intente nuevamente.");
+					});
+			}
+		}
+	</script>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+	<div class="container mt-5">
+		<h1 class="text-center">Bienvenido al Sistema de Gestión de Citas Médicas</h1>
+
+
+		<div class="container my-4">
+			<h1>Lista de Citas</h1>
+			<a th:href="@{/citas/nueva}" class="btn btn-primary mb-3">Agregar Nueva Cita</a>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Fecha & Hora</th>
+						<th>Doctor</th>
+						<th>Paciente</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cita : ${citas}">
+						<td th:text="${cita.id}"></td>
+						<td th:text="${cita.horario}"></td>
+						<td th:text="${cita.doctor.nombre}"></td>
+						<td th:text="${cita.nombrePaciente}"></td>
+
+						<td th:text="${cita.motivo}"></td>
+						<td>
+							<a th:href="@{/citas/editar/{id}(id=${cita.id})}" class="btn btn-warning btn-sm">Editar</a>
+							<button class="btn btn-danger btn-sm"
+								th:attr="data-id=${#strings.escapeJavaScript(cita.id)}" onclick="eliminarCita(this)">
+								Eliminar
+							</button>
+
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>

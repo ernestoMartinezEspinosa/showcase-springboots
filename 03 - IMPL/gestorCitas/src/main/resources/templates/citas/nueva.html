@@ -5,11 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Nueva Cita</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+	
+	<script>
+	    function crearNuevaCita() {
+	        
+
+	        // Crear un objeto con los datos del formulario
+	        const formData = {
+	            horario: document.getElementById("hora").value,
+	            nombrePaciente: document.getElementById("paciente").value,
+				doctor: {id : document.getElementById("doctor").value},
+				consultorio: { id : document.getElementById("consultorio").value},
+	            motivo: document.getElementById("motivo").value
+	        };
+
+	        // Enviar los datos al servidor en formato JSON
+	        fetch("http://localhost:8080/api/citas", {
+	            method: "POST",
+	            headers: {
+	                "Content-Type": "application/json"
+	            },
+	            body: JSON.stringify(formData) // Convertir el objeto a JSON
+	        })
+	        .then(response => response.json())
+	        .then(data => {
+				
+				alert (data.msg + " - Code: " + data.code);
+	            console.log(data);
+	        })
+	        .catch((error) => {
+				alert (error);
+				alert ("Error al crear la cita, validar datos, código : " + error.code);
+	            console.error("Error al crear la cita:", error);
+	        });
+	    }
+	</script>
+
 </head>
 <body>
     <div class="container mt-5">
         <h1>Agendar Nueva Cita</h1>
-        <form action="/citas/guardar" method="post" class="mt-4">
+        <form action="javascript:crearNuevaCita();" id="nuevaCitaForm" class="mt-4">
             <div class="mb-3">
                 <label for="doctor" class="form-label">Doctor</label>
                 <select class="form-control" id="doctor" name="doctor" required>
@@ -40,6 +76,11 @@
                 <label for="paciente" class="form-label">Nombre del Paciente</label>
                 <input type="text" class="form-control" id="paciente" name="paciente" required>
             </div>
+			
+			<div class="mb-3">
+			    <label for="motivo" class="form-label">motivo:</label>
+			    <input type="text" class="form-control" id="motivo" name="motivo" required>
+			</div>
 
             <button type="submit" class="btn btn-primary">Guardar Cita</button>
             <a href="/" class="btn btn-secondary">Volver al Inicio</a>
